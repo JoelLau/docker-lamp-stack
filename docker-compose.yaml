@@ -12,8 +12,11 @@ services:
       - ./:/var/www/
     networks:
       - travellist
+    depends_on:
+      - db
+      - nginx
   nginx:
-    image: nginx:1.17-alpine
+    image: nginx:alpine
     container_name: travellist-nginx
     restart: unless-stopped
     ports:
@@ -40,3 +43,4 @@ services:
       - travellist
 networks:
   travellist:
+    driver: bridge
